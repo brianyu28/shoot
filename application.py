@@ -1,12 +1,39 @@
 import os
 
-from flask import *
+from flask import Flask, render_template, request
+from helpers import *
+from models import *
+from send import *
 
-app = Flask(__name__)
+app.jinja_env.filters["format_time"] = format_time
 
 @app.route("/")
 def index():
-    return "foo"
+    appointments = Appointment.query.order_by(Appointment.time).all()
+    return render_template("index.html", appointments=appointments)
+
+@app.route("/signup", methods=["POST"])
+def signup():
+    data = request.get_json()
+    appt_id = data["id"]
+    name = data["name"]
+    position = data["position"]
+    time = data["time"]
+    appt = Appointment.query.get(appt_id)
+    if (not appt) or appt.filled:
+        return "Failed", 400
+    else:
+        # Fill the appointment
+        appt.filled = True
+        appt.name = name
+        appt.position = position
+        db.session.commit()
+
+        send(name, position, time)
+
+        # Notify me
+        return "Success", 200
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))

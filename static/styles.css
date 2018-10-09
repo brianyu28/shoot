@@ -1,0 +1,34 @@
+.container {
+    margin-top: 10px;
+}
+
+.slots {
+    padding: 20px;
+}
+
+.slot {
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.slot-filled {
+    background-color: #d16c68;
+}
+
+.slot-open {
+    background-color: #9ee086;
+    cursor: pointer;
+}
+
+.form-space {
+    margin: 5px;
+}
+
+#appt-confirm {
+    margin: 10px;
+}
+
+#appt-confirm-time {
+    font-weight: bold;
+}
