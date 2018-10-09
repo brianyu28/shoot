@@ -45,8 +45,9 @@
             <div class="slots">
                 {% for appointment in appointments %}
                     <div class="card slot {% if appointment.filled %}slot-filled{% else %}slot-open{% endif %}"
-                           data-id="{{ appointment.id }}" data-time="{{ appointment.time | format_time }}">
-                        {{ appointment.time | format_time }}
+                           data-id="{{ appointment.id }}" data-time="{{ appointment.time | format_time }}"
+                           data-location="{{ appointment.location or 'Location TBD' }}">
+                        {{ appointment.time | format_time }} ({{ appointment.location or 'Location TBD' }})
                     </div>
                 {% else %}
                     <b>No appointment slots are currently available. Please email me and I can schedule a time with you individually.</b>
@@ -69,6 +70,7 @@
                 <input id="form-position" type="text" class="form-control form-space" placeholder="(Possible) Position Shooting For" />
                 <input id="form-email" type="text" class="form-control form-space" placeholder="Email Address" />
                 <input id="form-datetime" data-id="0" type="text" disabled="true" class="form-control form-space" />
+                <input id="form-location" data-id="0" type="text" disabled="true" class="form-control form-space" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

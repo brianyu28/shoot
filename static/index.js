@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!evt.target.classList.contains("slot-open"))
         return;
       document.querySelector("#form-datetime").value = evt.target.dataset.time;
+      document.querySelector("#form-location").value = evt.target.dataset.location;
       document.querySelector("#form-datetime").dataset.id = evt.target.dataset.id;
       $("#signup").modal();
       $("#form-name").focus();

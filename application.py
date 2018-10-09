@@ -31,7 +31,7 @@ def signup():
         appt.email = email
         db.session.commit()
 
-        send(name, position, time, email)
+        send(name, position, time, appt.location, email)
 
         # Notify me
         return "Success", 200
