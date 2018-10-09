@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify({
         name: document.querySelector("#form-name").value,
         position: document.querySelector("#form-position").value,
+        email: document.querySelector("#form-email").value,
         id: parseInt(document.querySelector("#form-datetime").dataset.id),
         time: document.querySelector("#form-datetime").value
       })

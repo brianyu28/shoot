@@ -18,6 +18,7 @@ class Appointment(db.Model):
     time = db.Column(db.DateTime())
     name = db.Column(db.String(length=256), nullable=True)
     position = db.Column(db.String(length=256), nullable=True)
+    email = db.Column(db.String(length=256), nullable=True)
     filled = db.Column(db.Boolean, default=False)
 
     def add_slot(month, day, hour, minute):

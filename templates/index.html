@@ -19,6 +19,8 @@
                     <li>
                         To sign up for a Shoot Adviser meeting with me, <!-- either for a preschmooze and/or for a Shoot Adviser meeting, -->
                         please click on one of the <b>green available slots</b> below.
+                        If there are no available slots, or you're not available in any of the slots listed below,
+                        email me with some times that work for you and I'll try to add some more slots.
                     </li>
                     <li>
                         Shoot Adviser meetings are 100% <b>confidential</b>. Unless you request otherwise, the contents of our meeting 
@@ -39,6 +41,7 @@
             </div>
             <div id="appt-confirm" class="alert alert-primary" style="display:none;" role="alert">
                 You have successfully signed up for an appointment at <span id="appt-confirm-time">TIME</span>.
+                Check your email for a confirmation!
             </div>
             <div class="slots">
                 {% for appointment in appointments %}
@@ -63,8 +66,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input id="form-name" type="text" class="form-control form-space" placeholder="Name" />
+                <input id="form-name" type="text" class="form-control form-space" placeholder="Full Name" />
                 <input id="form-position" type="text" class="form-control form-space" placeholder="(Possible) Position Shooting For" />
+                <input id="form-email" type="text" class="form-control form-space" placeholder="Email Address" />
                 <input id="form-datetime" data-id="0" type="text" disabled="true" class="form-control form-space" />
             </div>
             <div class="modal-footer">

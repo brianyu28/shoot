@@ -9,28 +9,31 @@ from email.utils import formataddr
 
 from models import *
 
-def send(name, position, time):
+def send(name, position, time, email):
 
-    message = format_msg(name, position, time)
+    message = format_msg(name, position, time, email)
     server = mail_server()
     msg = MIMEText(message, "html")
-    msg["Subject"] = f"Shoot Meeting with {name}"
-    msg["From"] = formataddr(("Shoot Adviser Meetings", "utf-8"), "bot@thecrimson.com")
-    msg["To"] = "brian.yu@thecrimson.com"
+    msg["Subject"] = f"{name}'s Shoot Meeting with BPY"
+    msg["From"] = formataddr(("Shoot Adviser Brian Yu", "utf-8"), "bot@thecrimson.com")
+    msg["To"] = email
+    msg["Cc"] = "brian.yu@thecrimson.com"
     server.send_message(msg)
 
-def format_msg(name, position, time):
+def format_msg(name, position, time, email):
     """Formats message."""
 
-    contents = "Hi Brian,<br/><br/>"
-    contents += "Someone has signed up for a Shoot meeting with you. "
+    contents = f"Hi {name},<br/><br/>"
+    contents += "Thanks for signing up to meet with me. The details of the meeting are below: "
     contents += "<ul>"
 
     contents += f"<li>Name: <b>{name}</b></li>"
+    contents += f"<li>Email: <b>{email}</b></li>"
     contents += f"<li>Position: <b>{position}</b></li>"
-    contents += f"<li>Time: <b>{time}</b></li>"
+    contents += f"<li>Time (15-minute slot): <b>{time}</b></li>"
 
     contents += "</ul>"
+    contents += "I'll reach out again shortly to confirm a location. See you soon!<br/><br/>All the best,<br/>Brian"
     return contents
 
 def mail_server():

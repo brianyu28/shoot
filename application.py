@@ -17,6 +17,7 @@ def signup():
     data = request.get_json()
     appt_id = data["id"]
     name = data["name"]
+    email = data["email"]
     position = data["position"]
     time = data["time"]
     appt = Appointment.query.get(appt_id)
@@ -27,9 +28,10 @@ def signup():
         appt.filled = True
         appt.name = name
         appt.position = position
+        appt.email = email
         db.session.commit()
 
-        send(name, position, time)
+        send(name, position, time, email)
 
         # Notify me
         return "Success", 200
