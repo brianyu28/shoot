@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(res => {
       if (res.status != 200) {
-        alert("There was an error.");
+        alert("There was an error. Please refresh and try again!");
         return;
       }
       document.querySelector("#appt-confirm-time").innerHTML = document.querySelector("#form-datetime").value;
