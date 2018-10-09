@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         name: document.querySelector("#form-name").value,
         position: document.querySelector("#form-position").value,
         email: document.querySelector("#form-email").value,
+        phone: document.querySelector("#form-phone").value,
         id: parseInt(document.querySelector("#form-datetime").dataset.id),
         time: document.querySelector("#form-datetime").value
       })

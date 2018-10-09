@@ -9,7 +9,7 @@ app.jinja_env.filters["format_time"] = format_time
 
 @app.route("/")
 def index():
-    appointments = Appointment.query.order_by(Appointment.time).all()
+    appointments = Appointment.query.filter_by(visible=True).order_by(Appointment.time).all()
     return render_template("index.html", appointments=appointments)
 
 @app.route("/signup", methods=["POST"])
@@ -18,6 +18,7 @@ def signup():
     appt_id = data["id"]
     name = data["name"]
     email = data["email"]
+    phone = data["phone"]
     position = data["position"]
     time = data["time"]
     appt = Appointment.query.get(appt_id)
@@ -29,9 +30,10 @@ def signup():
         appt.name = name
         appt.position = position
         appt.email = email
+        appt.phone = phone
         db.session.commit()
 
-        send(name, position, time, appt.location, email)
+        send(name, position, time, appt.location, email, phone)
 
         # Notify me
         return "Success", 200

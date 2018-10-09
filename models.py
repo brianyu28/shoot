@@ -20,7 +20,9 @@ class Appointment(db.Model):
     name = db.Column(db.String(length=256), nullable=True)
     position = db.Column(db.String(length=256), nullable=True)
     email = db.Column(db.String(length=256), nullable=True)
+    phone = db.Column(db.String(length=256), nullable=True)
     filled = db.Column(db.Boolean, default=False)
+    visible = db.Column(db.Boolean, default=True)
 
     def add_slot(month, day, hour, minute, location=None):
         time = datetime.datetime(
@@ -33,5 +35,5 @@ class Appointment(db.Model):
     def remove_slots(month, day):
         for appt in Appointment.query.all():
             if appt.time.month == month and appt.time.day == day:
-                db.session.delete(appt)
+                appt.visible = False
         db.session.commit()

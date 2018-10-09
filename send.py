@@ -9,9 +9,9 @@ from email.utils import formataddr
 
 from models import *
 
-def send(name, position, time, location, email):
+def send(name, position, time, location, email, phone):
 
-    message = format_msg(name, position, time, location, email)
+    message = format_msg(name, position, time, location, email, phone)
     server = mail_server()
     msg = MIMEText(message, "html")
     msg["Subject"] = f"{name}'s Shoot Meeting with BPY"
@@ -20,7 +20,7 @@ def send(name, position, time, location, email):
     msg["Cc"] = "brian.yu@thecrimson.com"
     server.send_message(msg)
 
-def format_msg(name, position, time, location, email):
+def format_msg(name, position, time, location, email, phone):
     """Formats message."""
     location = location or "TBD (I'll follow up shortly to set up a location.)"
 
@@ -30,6 +30,7 @@ def format_msg(name, position, time, location, email):
 
     contents += f"<li>Name: <b>{name}</b></li>"
     contents += f"<li>Position: <b>{position}</b></li>"
+    contents += f"<li>Contact Info: <b>{email}</b>, <b>{phone}</b></li>"
     contents += f"<li>Time (15-minute slot): <b>{time}</b></li>"
     contents += f"<li>Location: <b>{location}</b></li>"
 
