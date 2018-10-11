@@ -22,6 +22,7 @@ def send(name, position, time, location, email, phone):
 
 def format_msg(name, position, time, location, email, phone):
     """Formats message."""
+    name = name.split()[0]
     location = location or "TBD (I'll follow up shortly to set up a location.)"
 
     contents = f"Hi {name},<br/><br/>"
