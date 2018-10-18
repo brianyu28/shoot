@@ -22,10 +22,10 @@ def send(name, position, time, location, category, email, phone):
 
 def format_msg(name, position, time, location, category, email, phone):
     """Formats message."""
-    name = name.split()[0]
+    short_name = name.split()[0]
     location = location or "TBD (I'll follow up shortly to set up a location.)"
 
-    contents = f"Hi {name},<br/><br/>"
+    contents = f"Hi {short_name},<br/><br/>"
     contents += "Thanks for signing up to meet with me. The details of the meeting are below: "
     contents += "<ul>"
 
